@@ -1,5 +1,11 @@
 ## Installation
 
+API Documentation:
+
+```bash
+https://documenter.getpostman.com/view/15024508/UVJZny6B
+```
+
 Clone the repo:
 
 ```bash
