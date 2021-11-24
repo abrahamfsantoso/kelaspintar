@@ -3,11 +3,11 @@
 Clone the repo:
 
 ```bash
-git clone git@github.com:abrahamfsantoso/prieds.git
+git clone git@github.com:abrahamfsantoso/kelaspintar.git
 
 or download as Zip file
 
-cd prieds
+cd kelaspintar
 ```
 
 Install the dependencies:
