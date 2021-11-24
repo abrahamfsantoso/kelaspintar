@@ -31,10 +31,3 @@ Running locally:
 ```bash
 npm run dev
 ```
-
-Testing:
-
-```bash
-# run all tests
-npm run test
-```
