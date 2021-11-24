@@ -4,7 +4,7 @@ const { verifyToken, verifyTokenAndAuthorization } = require('./verifyToken');
 const router = require('express').Router();
 
 //UPDATE
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -33,7 +33,7 @@ router.put('/:id', async (req, res) => {
 });
 
 //DELETE
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (!user) {
@@ -49,7 +49,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 //GET USER
-router.get('/find/:id', async (req, res) => {
+router.get('/find/:id', verifyTokenAndAuthorization, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
@@ -65,7 +65,7 @@ router.get('/find/:id', async (req, res) => {
 });
 
 //GET ALL USER
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   const query = req.query.new;
   try {
     const users = query

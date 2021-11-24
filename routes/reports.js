@@ -3,7 +3,8 @@ const Student = require('../models/Student');
 const {
   verifyToken,
   verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
+  verifyTokenAndStudent,
+  verifyTokenAndTeacher,
 } = require('./verifyToken');
 const mongoose = require('mongoose');
 const router = require('express').Router();
@@ -65,7 +66,7 @@ router.delete('/:id', verifyToken, async (req, res) => {
 });
 
 //GET a Report for astudent
-router.get('/find/:id', async (req, res) => {
+router.get('/find/:id', verifyToken, async (req, res) => {
   try {
     const report = await Report.findById(req.params.id);
 
@@ -93,7 +94,7 @@ router.get('/', verifyToken, async (req, res) => {
 });
 
 //GET a Report for a student for all subjects
-router.get('/find/:studentId/all', async (req, res) => {
+router.get('/find/:studentId/all', verifyToken, async (req, res) => {
   const findStudentId = mongoose.Types.ObjectId(req.params.studentId);
   try {
     const reports = await Report.aggregate([
@@ -140,7 +141,7 @@ router.get('/find/:studentId/all', async (req, res) => {
 });
 
 //GET a Report
-router.get('/top', async (req, res) => {
+router.get('/top', verifyToken, async (req, res) => {
   try {
     const test = await Report.aggregate([
       {
@@ -214,7 +215,7 @@ router.get('/top', async (req, res) => {
 });
 
 //GET a Report
-router.get('/list', async (req, res) => {
+router.get('/list', verifyTokenAndTeacher, async (req, res) => {
   try {
     const test = await Report.aggregate([
       {
